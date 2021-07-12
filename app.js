@@ -1,6 +1,7 @@
 // Require node_modules
 const express = require('express')
 const mongoose = require('mongoose')
+const exphdbs = require('express-handlebars')
 
 // Define server info
 const port = 3000
@@ -28,6 +29,11 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 })
+/* ------------------------------------------------------ */
+
+/* --------------Setting express-handlebars-------------- */
+app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view-engine', 'hbs')
 /* ------------------------------------------------------ */
 
 // Handle request and response
