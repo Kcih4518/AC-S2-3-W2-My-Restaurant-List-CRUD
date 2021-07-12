@@ -31,8 +31,12 @@
     <div class='col-md-10 col-12 mx-auto'>
       <div class='card-columns'>
         {{#each restaurants}}
-          <a href='/restaurants/{{this._id}}' class='text-secondary'>
-            <div class='card mb-3'>
+          <a
+            href='/restaurants/{{this._id}}'
+            class='text-secondary'
+            style='text-decoration:none;'
+          >
+            <div class='card mb-1'>
               <img
                 class='card-img-top'
                 src='{{this.image}}'
@@ -52,6 +56,25 @@
                 </span>
 
               </div>
+            </div>
+            <div
+              class='btn-group btn-group-sm mb-3 d-flex justify-content-end'
+              role='group'
+              aria-label='Second group'
+            >
+              <button
+                type='button'
+                class='btn btn-outline-primary mr-1'
+              >edit</button>
+              <button
+                type='button'
+                class='btn btn-outline-secondary mr-1'
+                href='/restaurants/{{this._id}}'
+              >detail</button>
+              <button
+                type='button'
+                class='btn btn-outline-danger'
+              >delete</button>
             </div>
           </a>
         {{/each}}
