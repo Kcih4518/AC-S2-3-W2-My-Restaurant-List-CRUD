@@ -31,52 +31,49 @@
     <div class='col-md-10 col-12 mx-auto'>
       <div class='card-columns'>
         {{#each restaurants}}
-          <a
-            href='/restaurants/{{this._id}}'
-            class='text-secondary'
-            style='text-decoration:none;'
-          >
-            <div class='card mb-1'>
-              <img
-                class='card-img-top'
-                src='{{this.image}}'
-                alt='{{this.name}}'
-              />
-              <div class='card-body p-3'>
-                <h6 class='card-title mb-1'>{{this.name}}</h6>
-
-                <div class='restaurant-category mb-1'>
-                  <i class='fas fa-utensils pr-2'></i>
-                  {{this.category}}
-                </div>
-
-                <span class='badge badge-pill badge-danger font-weight-normal'>
-                  {{this.rating}}
-                  <i class='fas fa-star fa-xs'></i>
-                </span>
-
-              </div>
-            </div>
-            <div
-              class='btn-group btn-group-sm mb-3 d-flex justify-content-end'
-              role='group'
-              aria-label='Second group'
+          <div class='restaurants-info' style='display: inline-block;'>
+            <a
+              href='/restaurants/{{this._id}}'
+              class='text-secondary'
+              style='text-decoration:none;'
             >
-              <button
-                type='button'
-                class='btn btn-outline-primary mr-1'
-              >edit</button>
-              <button
-                type='button'
-                class='btn btn-outline-secondary mr-1'
-                href='/restaurants/{{this._id}}'
-              >detail</button>
+              <div class='card mb-1'>
+                <img
+                  class='card-img-top'
+                  src='{{this.image}}'
+                  alt='{{this.name}}'
+                />
+                <div class='card-body p-3'>
+                  <h6 class='card-title mb-1'>{{this.name}}</h6>
+
+                  <div class='restaurant-category mb-1'>
+                    <i class='fas fa-utensils pr-2'></i>
+                    {{this.category}}
+                  </div>
+
+                  <span
+                    class='badge badge-pill badge-danger font-weight-normal'
+                  >
+                    {{this.rating}}
+                    <i class='fas fa-star fa-xs'></i>
+                  </span>
+
+                </div>
+              </div>
+            </a>
+            <div
+              class='container d-flex justify-content-end align-items-center p-0 mb-3'
+              role='group'
+            >
+              <a class='mr-3'>edit</a>
+              <a class='mr-3' href='/restaurants/{{this._id}}'>detail</a>
               <button
                 type='button'
                 class='btn btn-outline-danger'
               >delete</button>
             </div>
-          </a>
+
+          </div>
         {{/each}}
       </div>
     </div>

@@ -97,6 +97,7 @@ header {
   }
 }
 
+/* The fixed button is at the bottom right */
 .btn-add {
   position: fixed;
   bottom: 25px;
