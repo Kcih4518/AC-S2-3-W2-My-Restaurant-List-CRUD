@@ -36,6 +36,9 @@ app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view-engine', 'hbs')
 /* ------------------------------------------------------ */
 
+// setting static files
+app.use(express.static('public'))
+
 // Handle request and response
 app.get('/', (req, res) => {
   res.send('hello from simple server :)')
