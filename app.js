@@ -88,6 +88,15 @@ app.get('/restaurants/:id', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// Delete : Remove restaurant info card and db data
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .then((restaurant) => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
+})
+
 // Start and listen on the express server
 app.listen(port, () => {
   console.log(`Express is listen on http://localhost:${port}`)
