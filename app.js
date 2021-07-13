@@ -30,15 +30,16 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 })
-/* ------------------------------------------------------ */
 
 /* --------------Setting express-handlebars-------------- */
 app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-/* ------------------------------------------------------ */
 
 // setting static files
 app.use(express.static('public'))
+
+// Setting body-parser
+app.use(express.urlencoded({ extended: true }))
 
 // Handle request and response
 
