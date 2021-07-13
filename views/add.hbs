@@ -1,0 +1,182 @@
+{{! TODO: 1. 分割為必需與非必需兩個表單，並且使用單一submit button.  keyword: Submit Two Forms at same time with one button only  }}
+{{! TODO: 2. 增加bootstrap表單驗證   }}
+{{! TODO: 3. 增加Preview功能，讓使用者未submit前可以預覽card   }}
+<div class='container py-5'>
+
+  <div class='row'>
+    {{! Required form }}
+    <div class='col-12 col-lg-10 col-xl-8 mx-auto'>
+      <div class='card'>
+        <div class='card-body'>
+          <h5 class='card-title'>新增餐廳資訊
+            <i class='fas fa-utensils'></i></h5>
+          <hr />
+          <form method='POST' action='/'>
+            <div class='form-group form-row'>
+              <label for='name' class='col-md-4 col-form-label'>
+                餐廳名稱
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='name'
+                  class='form-control'
+                  id='name'
+                  required
+                />
+                <small class='text-muted form-text'>艾朋牛排餐酒館</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='name_en' class='col-md-4 col-form-label'>
+                英文名稱
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='name_en'
+                  class='form-control'
+                  id='name_en'
+                />
+                <small class='text-muted form-text'>À POINT STEAK & BAR</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label
+                for='category'
+                class='col-md-4 col-form-label'
+              >餐廳種類</label>
+              <div class='col-md-8'>
+                <input
+                  list='categories'
+                  class='form-control'
+                  id='category'
+                  name='category'
+                  required
+                />
+                <small class='text-muted form-text'>美式</small>
+                <datalist id='categories'>
+                  <option>日本料理</option>
+                  <option>義式餐廳</option>
+                  <option>美式</option>
+                  <option>咖啡</option>
+                  <option>中東料理</option>
+                  <option>酒吧</option>
+                </datalist>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='image' class='col-md-4 col-form-label'>
+                餐廳圖片 (URL)
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='image'
+                  class='form-control'
+                  id='image'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://shorturl.at/bjyUV</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='location' class='col-md-4 col-form-label'>
+                餐廳地址
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='location'
+                  class='form-control'
+                  id='location'
+                  required
+                />
+                <small
+                  class='text-muted form-text'
+                >台北市信義區忠孝東路五段139號2樓</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='phone' class='col-md-4 col-form-label'>
+                餐廳電話
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='tel'
+                  name='phone'
+                  class='form-control'
+                  id='phone'
+                />
+                <small class='text-muted form-text'>02-2570-1255</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row align-items-center'>
+              <label for='rating' class='col-md-4 col-form-label'>
+                評分
+              </label>
+              <div class='col-md-7'>
+                <input
+                  type='range'
+                  class='form-control-range'
+                  id='rating'
+                  name='rating'
+                  min='0'
+                  max='5'
+                  step='0.1'
+                  value='2.5'
+                  oninput='ratingOutput.value = rating.value'
+                />
+              </div>
+              <div class='col-md-1'>
+                <output name='ratingName' id='ratingOutput'>2.5</output>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label
+                for='description'
+                rows='3'
+                cols='20'
+                class='col-md-4 col-form-label'
+              >
+                餐廳描述
+              </label>
+              <div class='col-md-8'>
+                <textarea
+                  name='description'
+                  class='form-control'
+                  id='description'
+                >
+                </textarea>
+                <small
+                  class='text-muted form-text'
+                >從味蕾開始，重拾美味感動。</small>
+              </div>
+            </div>
+            <div
+              class='container d-flex justify-content-center align-items-end'
+            >
+              <button
+                class='btn btn-success mx-3 mt-1'
+                type='submit'
+              >Submit</button>
+              <a
+                class='btn btn-warning mx-3 mt-1'
+                role='button'
+                href='/'
+              >Back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
