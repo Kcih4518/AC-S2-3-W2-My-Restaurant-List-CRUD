@@ -58,12 +58,9 @@
                 />
                 <small class='text-muted form-text'>美式</small>
                 <datalist id='categories'>
-                  <option>日本料理</option>
-                  <option>義式餐廳</option>
-                  <option>美式</option>
-                  <option>咖啡</option>
-                  <option>中東料理</option>
-                  <option>酒吧</option>
+                  {{#each categories}}
+                    <option value='{{this}}'>{{this}}</option>
+                  {{/each}}
                 </datalist>
               </div>
             </div>

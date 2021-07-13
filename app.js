@@ -41,6 +41,18 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // Handle request and response
+
+// Create : Add a restaurant form
+app.get('/restaurants/add', (req, res) => {
+  Restaurant.distinct('category')
+    .lean()
+    .then((categories) => {
+      res.render('add', { categories })
+    })
+    .catch((error) => console.log(error))
+})
+
+// Read : View all the restaurants
 app.get('/', (req, res) => {
   return Restaurant.find()
     .lean()
