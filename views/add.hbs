@@ -1,6 +1,7 @@
 {{! TODO: 1. 分割為必需與非必需兩個表單，並且使用單一submit button.  keyword: Submit Two Forms at same time with one button only  }}
 {{! TODO: 2. 增加bootstrap表單驗證   }}
 {{! TODO: 3. 增加Preview功能，讓使用者未submit前可以預覽card   }}
+{{! TODO: 4. 透過input pattern 進行輸入的格式驗證 ref: https://yuugou727.github.io/blog/2018/02/20/html5-pattern/   }}
 <div class='container py-5'>
 
   <div class='row'>
@@ -79,6 +80,24 @@
                 <small
                   class='text-muted form-text'
                 >https://shorturl.at/bjyUV</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='google_map' class='col-md-4 col-form-label'>
+                Google Map (URL)
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='google_map'
+                  class='form-control'
+                  id='google_map'
+                  required
+                />
+                <small
+                  class='text-muted form-text'
+                >https://goo.gl/maps/6Lq7U2ahp152</small>
               </div>
             </div>
 
