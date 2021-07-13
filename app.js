@@ -53,6 +53,24 @@ app.get('/restaurants/add', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// Create: Add a new restaurant
+app.post('/restaurants', (req, res) => {
+  const restaurant = req.body
+  Restaurant.create({
+    name: restaurant.name,
+    name_en: restaurant.name_en,
+    category: restaurant.category,
+    image: restaurant.image,
+    location: restaurant.location,
+    phone: restaurant.phone,
+    google_map: restaurant.google_map,
+    rating: restaurant.rating,
+    description: restaurant.description,
+  })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
+})
+
 // Read : View all the restaurants
 app.get('/', (req, res) => {
   return Restaurant.find()
