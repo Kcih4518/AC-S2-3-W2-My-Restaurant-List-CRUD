@@ -67,10 +67,12 @@
             >
               <a class='mr-3'>edit</a>
               <a class='mr-3' href='/restaurants/{{this._id}}'>detail</a>
-              <button
-                type='button'
-                class='btn btn-outline-danger'
-              >delete</button>
+              <form action='/restaurants/{{this._id}}/delete' method='POST'>
+                <button
+                  type='submit'
+                  class='btn btn-outline-danger'
+                >delete</button>
+              </form>
             </div>
 
           </div>
