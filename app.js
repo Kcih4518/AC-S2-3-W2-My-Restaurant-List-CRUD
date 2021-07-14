@@ -87,6 +87,34 @@ app.get('/', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// Read: Search restaurant (name 、category)
+// MongoDB $regex ref: https://docs.mongodb.com/manual/reference/operator/query/regex/
+app.get('/restaurants/search', (req, res) => {
+  const keyword = req.query.keyword.trim()
+
+  if (!keyword.length) {
+    return res.render('index', { error: 'Please enter keywords !!!' })
+  }
+
+  Restaurant.find({
+    $or: [
+      { category: { $regex: keyword, $options: 'i' } },
+      { name: { $regex: keyword, $options: 'i' } },
+    ],
+  })
+    .lean()
+    .then((restaurants) => {
+      if (!restaurants.length) {
+        return res.render('index', {
+          error: `很抱歉，沒有找到與 ${keyword} 相關的餐廳!!`,
+          keyword,
+        })
+      }
+      res.render('index', { restaurants, keyword })
+    })
+    .catch((error) => console.log(error))
+})
+
 // Read : View details of a restaurant
 // TODO: Error handle : When cannot get DB data
 // TODO: Change "show" to "detail"
