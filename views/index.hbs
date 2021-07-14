@@ -3,7 +3,7 @@
 <div class='container search-bar'>
   <div class='search-bar-outer'>
     <div class='search-bar-inner'>
-      <form action='/restaurants/searches'>
+      <form action='/restaurants/search'>
         <h4 class='mb-2'>尋找餐廳：</h4>
         <div class='input-group'>
           <input
@@ -94,7 +94,7 @@
 </div>
 
 {{! Only valid when both keyword and error are false }}
-{{!-- turnOnAddButton : Please ref : helpers/handlebars.js --}}
+{{! turnOnAddButton : Please ref : helpers/handlebars.js }}
 {{#if (turnOnAddButton keyword error)}}
   {{! Add button }}
   <a href='/restaurants/add' class='btn btn-info btn-lg btn-add'>
