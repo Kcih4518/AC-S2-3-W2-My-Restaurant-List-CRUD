@@ -1,0 +1,206 @@
+{{! FIXME: 1. 修正datalist在有初始值無法顯示其它選項 }}
+{{! FIXME: 2. small的內容 }}
+{{! FIXME: 3. input 驗證 }}
+<div class='container py-5'>
+
+  <div class='row'>
+    {{! Required form }}
+    <div class='col-12 col-lg-10 col-xl-8 mx-auto'>
+      <div class='card'>
+        <div class='card-body'>
+          <h5 class='card-title'>修改餐廳資訊
+            <i class='fas fa-utensils'></i></h5>
+          <hr />
+          <form method='POST' action='/restaurants/{{restaurant._id}}/edit'>
+            <div class='form-group form-row'>
+              <label for='name' class='col-md-4 col-form-label'>
+                餐廳名稱
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='name'
+                  class='form-control'
+                  id='name'
+                  value='{{restaurant.name}}'
+                  required
+                />
+                <small class='text-muted form-text'>艾朋牛排餐酒館</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='name_en' class='col-md-4 col-form-label'>
+                英文名稱
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='name_en'
+                  class='form-control'
+                  id='name_en'
+                  value='{{restaurant.name_en}}'
+                />
+                <small class='text-muted form-text'>À POINT STEAK & BAR</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label
+                for='category'
+                class='col-md-4 col-form-label'
+              >餐廳種類</label>
+              <div class='col-md-8'>
+                <input
+                  list='categories'
+                  class='form-control'
+                  id='category'
+                  name='category'
+                  value='{{restaurant.category}}'
+                  required
+                />
+                <small class='text-muted form-text'>美式</small>
+                <datalist id='categories'>
+                  {{#each categories}}
+                    <option>{{this}}</option>
+                  {{/each}}
+                </datalist>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='image' class='col-md-4 col-form-label'>
+                餐廳圖片 (URL)
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='image'
+                  class='form-control'
+                  id='image'
+                  value='{{restaurant.image}}'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='google_map' class='col-md-4 col-form-label'>
+                Google Map (URL)
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='google_map'
+                  class='form-control'
+                  id='google_map'
+                  value='{{restaurant.google_map}}'
+                  required
+                />
+                <small
+                  class='text-muted form-text'
+                >https://goo.gl/maps/6Lq7U2ahp152</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='location' class='col-md-4 col-form-label'>
+                餐廳地址
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='text'
+                  name='location'
+                  class='form-control'
+                  id='location'
+                  value='{{restaurant.location}}'
+                  required
+                />
+                <small
+                  class='text-muted form-text'
+                >台北市信義區忠孝東路五段139號2樓</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='phone' class='col-md-4 col-form-label'>
+                餐廳電話
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='tel'
+                  name='phone'
+                  class='form-control'
+                  value='{{restaurant.phone}}'
+                  id='phone'
+                />
+                <small class='text-muted form-text'>02-2570-1255</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row align-items-center'>
+              <label for='rating' class='col-md-4 col-form-label'>
+                評分
+              </label>
+              <div class='col-md-7'>
+                <input
+                  type='range'
+                  class='form-control-range'
+                  id='rating'
+                  name='rating'
+                  min='0'
+                  max='5'
+                  step='0.1'
+                  value='{{restaurant.rating}}'
+                  oninput='ratingOutput.value = rating.value'
+                />
+              </div>
+              <div class='col-md-1'>
+                <output
+                  name='ratingName'
+                  id='ratingOutput'
+                >{{restaurant.rating}}</output>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label
+                for='description'
+                rows='3'
+                cols='20'
+                class='col-md-4 col-form-label'
+              >
+                餐廳描述
+              </label>
+              <div class='col-md-8'>
+                <textarea
+                  name='description'
+                  class='form-control'
+                  id='description'
+                >{{restaurant.description}}</textarea>
+                <small
+                  class='text-muted form-text'
+                >從味蕾開始，重拾美味感動。</small>
+              </div>
+            </div>
+            <div
+              class='container d-flex justify-content-center align-items-end'
+            >
+              <button
+                class='btn btn-success mx-3 mt-1'
+                type='submit'
+              >Submit</button>
+              <a
+                class='btn btn-warning mx-3 mt-1'
+                role='button'
+                href='/'
+              >Back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
