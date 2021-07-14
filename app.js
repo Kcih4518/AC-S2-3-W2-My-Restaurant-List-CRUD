@@ -8,6 +8,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphdbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant-list')
+const turnOnAddButton = require('./helpers/handlebars')
 
 // Define server info
 const port = 3000
@@ -37,7 +38,14 @@ db.once('open', () => {
 })
 
 // Setting express-handlebars
-app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine(
+  'hbs',
+  exphdbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    helpers: { turnOnAddButton },
+  })
+)
 app.set('view engine', 'hbs')
 
 // setting static files
