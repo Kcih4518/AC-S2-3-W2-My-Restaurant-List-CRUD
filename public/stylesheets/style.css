@@ -98,9 +98,15 @@ header {
 }
 
 /* The fixed button is at the bottom right */
-.btn-add {
+.btn-add,
+.btn-back {
   position: fixed;
   bottom: 25px;
   right: 25px;
   z-index: 99999;
+}
+
+.fa-exclamation-triangle {
+  font-size: 3rem;
+  color: #9b4b4b;
 }
