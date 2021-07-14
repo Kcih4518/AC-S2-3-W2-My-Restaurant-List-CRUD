@@ -1,4 +1,8 @@
-// TODO: Create Error handle for CRUD
+// TODO: Add search feature : restaurant's name keyword
+// TODO: Error handle : When cannot be founded
+// TODO: Error handle : When blank input
+// TODO: Add sorting feature: rating、category、name (A-Z) 、name (Z-A)
+// TODO: Make sure all route paths are correct
 // Require node_modules
 const express = require('express')
 const mongoose = require('mongoose')
@@ -13,26 +17,26 @@ const app = express()
 
 // Setting mongoose
 // TODO: Do more db error handling (like retry )
-/* ------------------------------------------------------ */
+// TODO: Package the mongoose connection into a module
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 
-/// Get database connection status
+// 1. Get database connection status
 const db = mongoose.connection
 
-/// Connection exception handling
+// 2. Connection exception handling
 db.on('error', () => {
   console.log('mongodb error!')
 })
 
-/// Connection successfully handling
+// 3. Connection successfully handling
 db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-/* --------------Setting express-handlebars-------------- */
+// Setting express-handlebars
 app.engine('hbs', exphdbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
@@ -42,7 +46,7 @@ app.use(express.static('public'))
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
 
-// Handle request and response
+// Handle request and response (CRUD)
 
 // Create : Add a restaurant form
 app.get('/restaurants/add', (req, res) => {
@@ -55,6 +59,8 @@ app.get('/restaurants/add', (req, res) => {
 })
 
 // Create: Add a new restaurant
+// TODO: Error handle : When cannot be established normally
+// TODO: When non-essential data is empty, fill in the default value.
 app.post('/restaurants', (req, res) => {
   const restaurant = req.body
   Restaurant.create({
@@ -73,6 +79,7 @@ app.post('/restaurants', (req, res) => {
 })
 
 // Read : View all the restaurants
+// TODO: Error handle : When cannot get DB data
 app.get('/', (req, res) => {
   return Restaurant.find()
     .lean()
@@ -81,6 +88,9 @@ app.get('/', (req, res) => {
 })
 
 // Read : View details of a restaurant
+// TODO: Error handle : When cannot get DB data
+// TODO: Change "show" to "detail"
+// TODO: Show restaurant english name
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -90,6 +100,8 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // Update : View restaurant edit form
+// TODO: Can reduce process be queried only once?
+// TODO: Error handle : When cannot get DB data
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -105,6 +117,8 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// Update : Modify restaurant info in DB data
+// TODO: Error handle : When cannot update DB data
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const restaurantUpdateInfo = req.body
@@ -121,7 +135,9 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch((error) => console.log(error))
 })
 
-// Delete : Remove restaurant info card and db data
+// Delete : Remove restaurant info card and DB data
+// TODO: Error handle : When cannot delete DB data
+// TODO: Added delete modal to prompt the user
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
