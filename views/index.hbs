@@ -26,6 +26,16 @@
   </div>
 </div>
 
+{{! Error handle: When no relevant restaurant can be found }}
+{{#if error}}
+  <div
+    class='alert container d-flex justify-content-center align-items-center mt-5'
+  >
+    <i class='fas fa-exclamation-triangle mr-3'></i>
+    <span>{{error}}</span>
+  </div>
+{{/if}}
+
 <!-- restaurant list -->
 <div class='container mt-5'>
   <div class='row'>
