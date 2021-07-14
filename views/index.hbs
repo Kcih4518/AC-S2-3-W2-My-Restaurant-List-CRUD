@@ -93,7 +93,16 @@
   </div>
 </div>
 
-<!-- Add button-->
-<a href='/restaurants/add' class='btn btn-info btn-lg btn-add'>
-  <i class='fas fa-plus'></i>
-</a>
+{{! Only valid when both keyword and error are false }}
+{{!-- turnOnAddButton : Please ref : helpers/handlebars.js --}}
+{{#if (turnOnAddButton keyword error)}}
+  {{! Add button }}
+  <a href='/restaurants/add' class='btn btn-info btn-lg btn-add'>
+    <i class='fas fa-plus'></i>
+  </a>
+{{else}}
+  {{! Back button }}
+  <a href='/' class='btn btn-warning btn-lg btn-back'>
+    <i class='fas fa-undo'></i>
+  </a>
+{{/if}}
