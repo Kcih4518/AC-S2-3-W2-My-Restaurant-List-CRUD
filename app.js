@@ -1,3 +1,4 @@
+// TODO: Create Error handle for CRUD
 // Require node_modules
 const express = require('express')
 const mongoose = require('mongoose')
@@ -85,6 +86,38 @@ app.get('/restaurants/:id', (req, res) => {
   return Restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
+    .catch((error) => console.log(error))
+})
+
+// Update : View restaurant edit form
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => {
+      Restaurant.distinct('category')
+        .lean()
+        .then((categories) => {
+          res.render('edit', { restaurant, categories })
+        })
+        .catch((error) => console.log(error))
+    })
+    .catch((error) => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const restaurantUpdateInfo = req.body
+  Restaurant.findById(id)
+    .then((restaurant) => {
+      for (const key in restaurantUpdateInfo) {
+        if (restaurantUpdateInfo[key]) {
+          restaurant[key] = restaurantUpdateInfo[key]
+        }
+      }
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch((error) => console.log(error))
 })
 
