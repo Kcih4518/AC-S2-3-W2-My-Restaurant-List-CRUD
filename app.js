@@ -170,7 +170,6 @@ app.post('/restaurants/:id/edit', (req, res) => {
 
 // Delete : Remove restaurant info card and DB data
 // TODO: Error handle : When cannot delete DB data
-// TODO: Added delete modal to prompt the user
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
