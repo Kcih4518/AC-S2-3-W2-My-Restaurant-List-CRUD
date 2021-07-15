@@ -1,6 +1,3 @@
-// TODO: Add search feature : restaurant's name keyword
-// TODO: Error handle : When cannot be founded
-// TODO: Error handle : When blank input
 // TODO: Add sorting feature: rating、category、name (A-Z) 、name (Z-A)
 // TODO: Make sure all route paths are correct
 // Require node_modules
