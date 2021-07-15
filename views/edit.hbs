@@ -1,6 +1,4 @@
 {{! FIXME: 1. 修正datalist在有初始值無法顯示其它選項 }}
-{{! TODO: 1. small的內容 }}
-{{! TODO: 2. input 驗證 }}
 <div class='container py-5'>
 
   <div class='row'>
@@ -14,7 +12,7 @@
           <form method='POST' action='/restaurants/{{restaurant._id}}/edit'>
             <div class='form-group form-row'>
               <label for='name' class='col-md-4 col-form-label'>
-                餐廳名稱
+                餐廳名稱 (必填)
               </label>
               <div class='col-md-8'>
                 <input
@@ -46,10 +44,8 @@
             </div>
 
             <div class='form-group form-row'>
-              <label
-                for='category'
-                class='col-md-4 col-form-label'
-              >餐廳種類</label>
+              <label for='category' class='col-md-4 col-form-label'>餐廳種類
+                (必填)</label>
               <div class='col-md-8'>
                 <input
                   list='categories'
@@ -69,45 +65,8 @@
             </div>
 
             <div class='form-group form-row'>
-              <label for='image' class='col-md-4 col-form-label'>
-                餐廳圖片 (URL)
-              </label>
-              <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='image'
-                  class='form-control'
-                  id='image'
-                  value='{{restaurant.image}}'
-                />
-                <small
-                  class='text-muted form-text'
-                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
-              </div>
-            </div>
-
-            <div class='form-group form-row'>
-              <label for='google_map' class='col-md-4 col-form-label'>
-                Google Map (URL)
-              </label>
-              <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='google_map'
-                  class='form-control'
-                  id='google_map'
-                  value='{{restaurant.google_map}}'
-                  required
-                />
-                <small
-                  class='text-muted form-text'
-                >https://goo.gl/maps/6Lq7U2ahp152</small>
-              </div>
-            </div>
-
-            <div class='form-group form-row'>
               <label for='location' class='col-md-4 col-form-label'>
-                餐廳地址
+                餐廳地址 (必填)
               </label>
               <div class='col-md-8'>
                 <input
@@ -126,17 +85,55 @@
 
             <div class='form-group form-row'>
               <label for='phone' class='col-md-4 col-form-label'>
-                餐廳電話
+                餐廳電話 (必填)
               </label>
               <div class='col-md-8'>
                 <input
                   type='tel'
                   name='phone'
+                  pattern='^0[1-9]{1,3} [0-9]{3,4} [0-9]{3,4}'
                   class='form-control'
                   value='{{restaurant.phone}}'
                   id='phone'
+                  required
                 />
-                <small class='text-muted form-text'>02-2570-1255</small>
+                <small class='text-muted form-text'>02 2570 1255 or 0952 123 125</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='image' class='col-md-4 col-form-label'>
+                餐廳圖片URL
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='image'
+                  class='form-control'
+                  id='image'
+                  value='{{restaurant.image}}'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='google_map' class='col-md-4 col-form-label'>
+                Google Map URL
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='google_map'
+                  class='form-control'
+                  id='google_map'
+                  value='{{restaurant.google_map}}'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://goo.gl/maps/6Lq7U2ahp152</small>
               </div>
             </div>
 
