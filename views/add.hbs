@@ -1,8 +1,7 @@
 {{! TODO: 1. 分割為必需與非必需兩個表單，並且使用單一submit button.  keyword: Submit Two Forms at same time with one button only  }}
 {{! TODO: 2. 增加bootstrap表單驗證   }}
 {{! TODO: 3. 增加Preview功能，讓使用者未submit前可以預覽card   }}
-{{! TODO: 4.透過input pattern 進行輸入的格式驗證 ref: https://yuugou727.github.io/blog/2018/02/20/html5-pattern/   }}
-{{! TODO: 5.增加"必填"的提示}}
+{{! TODO: 4.增加"必填"的提示}}
 <div class='container py-5'>
 
   <div class='row'>
@@ -16,7 +15,7 @@
           <form method='POST' action='/restaurants'>
             <div class='form-group form-row'>
               <label for='name' class='col-md-4 col-form-label'>
-                餐廳名稱
+                餐廳名稱 (必填)
               </label>
               <div class='col-md-8'>
                 <input
@@ -46,10 +45,8 @@
             </div>
 
             <div class='form-group form-row'>
-              <label
-                for='category'
-                class='col-md-4 col-form-label'
-              >餐廳種類</label>
+              <label for='category' class='col-md-4 col-form-label'>餐廳種類
+                (必填)</label>
               <div class='col-md-8'>
                 <input
                   list='categories'
@@ -68,43 +65,8 @@
             </div>
 
             <div class='form-group form-row'>
-              <label for='image' class='col-md-4 col-form-label'>
-                餐廳圖片 (URL)
-              </label>
-              <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='image'
-                  class='form-control'
-                  id='image'
-                />
-                <small
-                  class='text-muted form-text'
-                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
-              </div>
-            </div>
-
-            <div class='form-group form-row'>
-              <label for='google_map' class='col-md-4 col-form-label'>
-                Google Map (URL)
-              </label>
-              <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='google_map'
-                  class='form-control'
-                  id='google_map'
-                  required
-                />
-                <small
-                  class='text-muted form-text'
-                >https://goo.gl/maps/6Lq7U2ahp152</small>
-              </div>
-            </div>
-
-            <div class='form-group form-row'>
               <label for='location' class='col-md-4 col-form-label'>
-                餐廳地址
+                餐廳地址 (必填)
               </label>
               <div class='col-md-8'>
                 <input
@@ -122,16 +84,52 @@
 
             <div class='form-group form-row'>
               <label for='phone' class='col-md-4 col-form-label'>
-                餐廳電話
+                餐廳電話 (必填)
               </label>
               <div class='col-md-8'>
                 <input
                   type='tel'
+                  pattern='^0[1-9]{1,3} [0-9]{3,4} [0-9]{3,4}'
                   name='phone'
                   class='form-control'
                   id='phone'
+                  required
                 />
-                <small class='text-muted form-text'>02-2570-1255</small>
+                <small class='text-muted form-text'>02 2570 1255 or 0952 123 125</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='image' class='col-md-4 col-form-label'>
+                餐廳圖片URL
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='image'
+                  class='form-control'
+                  id='image'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
+              </div>
+            </div>
+
+            <div class='form-group form-row'>
+              <label for='google_map' class='col-md-4 col-form-label'>
+                Google Map URL
+              </label>
+              <div class='col-md-8'>
+                <input
+                  type='url'
+                  name='google_map'
+                  class='form-control'
+                  id='google_map'
+                />
+                <small
+                  class='text-muted form-text'
+                >https://goo.gl/maps/6Lq7U2ahp152</small>
               </div>
             </div>
 
@@ -171,8 +169,7 @@
                   name='description'
                   class='form-control'
                   id='description'
-                >
-                </textarea>
+                ></textarea>
                 <small
                   class='text-muted form-text'
                 >從味蕾開始，重拾美味感動。</small>
