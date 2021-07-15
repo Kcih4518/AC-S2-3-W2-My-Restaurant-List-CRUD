@@ -68,6 +68,15 @@ app.get('/restaurants/add', (req, res) => {
 // TODO: When non-essential data is empty, fill in the default value.
 app.post('/restaurants', (req, res) => {
   const restaurant = req.body
+  if (!restaurant.image) {
+    restaurant.image =
+      'https://nicswafford.files.wordpress.com/2020/04/food.jpg'
+  }
+
+  if (!restaurant.google_map) {
+    restaurant.google_map = 'https://www.google.com.tw/maps/'
+  }
+
   Restaurant.create({
     name: restaurant.name,
     name_en: restaurant.name_en,
