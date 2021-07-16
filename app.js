@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const exphdbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant-list')
 const turnOnAddButton = require('./helpers/handlebars')
+const methodOverride = require('method-override')
 
 // Define server info
 const port = 3000
@@ -50,6 +51,9 @@ app.use(express.static('public'))
 
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
+
+// Setting middleware: method-override
+app.use(methodOverride('_method'))
 
 // Handle request and response (CRUD)
 
