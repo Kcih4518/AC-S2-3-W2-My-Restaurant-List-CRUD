@@ -1,23 +1,10 @@
 // Require node_modules
 const restaurantListJson = require('./restaurant.json')
 const Restaurant = require('../restaurant-list')
-const mongoose = require('mongoose')
+
+const db = require('../../config/mongoose')
 
 // Setting mongoose
-// TODO: Encapsulate db connection into a module
-mongoose.connect('mongodb://localhost/restaurant-list', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-
-/// Get database connection status
-const db = mongoose.connection
-
-/// Connection exception handling
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-
 /// Connection successfully handling
 // TODO: Can also use map + join experiment instead
 // FIXME: Maybe also need import restaurant.id into database
