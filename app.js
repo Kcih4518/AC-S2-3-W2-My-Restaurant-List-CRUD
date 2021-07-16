@@ -161,7 +161,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 // Update : Modify restaurant info in DB data
 // TODO: Error handle : When cannot update DB data
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const restaurantUpdateInfo = req.body
   Restaurant.findById(id)
@@ -179,7 +179,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 
 // Delete : Remove restaurant info card and DB data
 // TODO: Error handle : When cannot delete DB data
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
     .then((restaurant) => restaurant.remove())
