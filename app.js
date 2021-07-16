@@ -7,6 +7,7 @@ const exphdbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant-list')
 const turnOnAddButton = require('./helpers/handlebars')
 const methodOverride = require('method-override')
+const routes = require('./routes')
 
 // Define server info
 const port = 3000
@@ -54,6 +55,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // Setting middleware: method-override
 app.use(methodOverride('_method'))
+
+// Setting Express router and import request into router
+app.use(routes)
 
 // Handle request and response (CRUD)
 
