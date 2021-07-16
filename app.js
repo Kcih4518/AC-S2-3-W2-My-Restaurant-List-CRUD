@@ -100,15 +100,6 @@ app.post('/restaurants', (req, res) => {
     .catch((error) => console.log(error))
 })
 
-// Read : View all the restaurants
-// TODO: Error handle : When cannot get DB data
-app.get('/', (req, res) => {
-  return Restaurant.find()
-    .lean()
-    .then((restaurants) => res.render('index', { restaurants }))
-    .catch((error) => console.log(error))
-})
-
 // Read: Search restaurant (name 、category)
 // MongoDB $regex ref: https://docs.mongodb.com/manual/reference/operator/query/regex/
 app.get('/restaurants/search', (req, res) => {
