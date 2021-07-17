@@ -21,7 +21,7 @@ app.engine(
   exphdbs({
     defaultLayout: 'main',
     extname: '.hbs',
-    helpers: { isTurnOnAddButton, isEqual },
+    helpers: { isTurnOnAddButton, isEqual }
   })
 )
 app.set('view engine', 'hbs')

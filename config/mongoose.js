@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 // TODO: Package the mongoose connection into a module
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 })
 
 // 1. Get database connection status
