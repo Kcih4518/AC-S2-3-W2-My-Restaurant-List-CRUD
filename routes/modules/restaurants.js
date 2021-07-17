@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant-list')
-const sortList = require('../../config/sortList.json')
+const sortList = require('../../models/sorts/sortList.json')
 
 // Create : Add a restaurant form
 router.get('/add', (req, res) => {
