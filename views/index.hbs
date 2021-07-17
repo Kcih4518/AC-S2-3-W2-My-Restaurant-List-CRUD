@@ -3,24 +3,44 @@
 <!-- search bar -->
 <div class='container search-bar'>
   <div class='search-bar-outer'>
-    <div class='search-bar-inner'>
-      <form action='/restaurants/search'>
-        <h4 class='mb-2'>尋找餐廳：</h4>
-        <div class='input-group'>
-          <input
-            type='text'
-            name='keyword'
-            class='form-control'
-            placeholder='輸入餐廳、分類'
-            aria-label='Restaurant Name...'
-            value='{{keyword}}'
-            aria-describedby='search-button'
-          />
-          <div class='input-group-append'>
-            <button class='btn btn-major' type='submit' id='search-button'><i
-                class='fas fa-search'
-              ></i></button>
+    <div class='row'>
+      <form action='/restaurants/search' class='col-12 col-lg-8'>
+        <div class='search-bar-inner'>
+          <h4 class='mb-2'>尋找餐廳：</h4>
+          <div class='input-group'>
+            <input
+              type='text'
+              name='keyword'
+              class='form-control'
+              placeholder='輸入餐廳、分類'
+              aria-label='Restaurant Name...'
+              value='{{keyword}}'
+              aria-describedby='search-button'
+            />
+            <div class='input-group-append'>
+              <button class='btn btn-major' type='submit' id='search-button'><i
+                  class='fas fa-search'
+                ></i></button>
+            </div>
           </div>
+        </div>
+      </form>
+      <form
+        class='col-4 col-lg-4 d-flex flex-column justify-content-end'
+        action='/restaurants/sort'
+      >
+        <div class='search-bar-inner'>
+          <select
+            class='form-control'
+            id='sort'
+            name='sortOption'
+            onchange='submit()'
+          >
+            <option >選擇排序</option>
+            {{#each sortList}}
+              <option value='{{this.value}}' {{#if (isEqual this.value ../sortOption)}} selected{{/if}}>{{this.selectName}}</option>
+            {{/each}}
+          </select>
         </div>
       </form>
     </div>
@@ -139,14 +159,9 @@
 
 {{! Only valid when both keyword and error are false }}
 {{! turnOnAddButton : Please ref : helpers/handlebars.js }}
-{{#if (turnOnAddButton keyword error)}}
-  {{! Add button }}
-  <a href='/restaurants/add' class='btn btn-info btn-lg btn-add'>
-    <i class='fas fa-plus'></i>
-  </a>
-{{else}}
+{{#unless (isTurnOnAddButton keyword error)}}
   {{! Back button }}
   <a href='/' class='btn btn-warning btn-lg btn-back'>
     <i class='fas fa-undo'></i>
   </a>
-{{/if}}
+{{/unless}}
