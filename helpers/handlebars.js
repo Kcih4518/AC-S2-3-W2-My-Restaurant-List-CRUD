@@ -1,5 +1,9 @@
-function turnOnAddButton(value, value1) {
+function isTurnOnAddButton(value, value1) {
   return !(value + value1)
 }
 
-module.exports = turnOnAddButton
+function isEqual(value, value1) {
+  return value === value1
+}
+
+module.exports = (isTurnOnAddButton, isEqual)
