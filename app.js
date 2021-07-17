@@ -3,7 +3,8 @@
 // Require node_modules
 const express = require('express')
 const exphdbs = require('express-handlebars')
-const turnOnAddButton = require('./helpers/handlebars')
+const isEqual = require('./helpers/handlebars')
+const isTurnOnAddButton = require('./helpers/handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
@@ -20,7 +21,7 @@ app.engine(
   exphdbs({
     defaultLayout: 'main',
     extname: '.hbs',
-    helpers: { turnOnAddButton },
+    helpers: { isTurnOnAddButton, isEqual },
   })
 )
 app.set('view engine', 'hbs')
