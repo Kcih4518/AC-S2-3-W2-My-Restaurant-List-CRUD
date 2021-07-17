@@ -1,0 +1,18 @@
+{
+  "nameAsc": {
+    "selectName": "A -> Z",
+    "value": "nameAsc"
+  },
+  "nameDesc": {
+    "selectName": "Z -> A",
+    "value": "nameDesc"
+  },
+  "category": {
+    "selectName": "類別",
+    "value": "category"
+  },
+  "location": {
+    "selectName": "地區",
+    "value": "location"
+  }
+}
