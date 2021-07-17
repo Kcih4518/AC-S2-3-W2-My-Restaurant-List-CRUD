@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant-list')
+const sortList = require('../../config/sortList.json')
 
 // Create : Add a restaurant form
 router.get('/add', (req, res) => {
@@ -31,11 +32,28 @@ router.post('/', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// Read: Sort by selection
+router.get('/sort', (req, res) => {
+  const sortOption = req.query.sortOption
+  const mongooseSortData = {
+    nameAsc: { name: 'asc' },
+    nameDesc: { name: 'desc' },
+    category: { category: 'asc' },
+    location: { location: 'asc' },
+  }
+  Restaurant.find()
+    .lean()
+    .sort(mongooseSortData[sortOption])
+    .then((restaurants) =>
+      res.render('index', { restaurants, sortList, sortOption })
+    )
+    .catch((error) => console.log(error))
+})
+
 // Read: Search restaurant (name 、category)
 // MongoDB $regex ref: https://docs.mongodb.com/manual/reference/operator/query/regex/
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-
   if (!keyword.length) {
     return res.render('index', { error: 'Please enter keywords !!!' })
   }
