@@ -96,11 +96,7 @@ router.put('/:id', (req, res) => {
   const restaurantUpdateInfo = req.body
   Restaurant.findById(id)
     .then((restaurant) => {
-      for (const key in restaurantUpdateInfo) {
-        if (restaurantUpdateInfo[key]) {
-          restaurant[key] = restaurantUpdateInfo[key]
-        }
-      }
+      restaurant = Object.assign(restaurant, restaurantUpdateInfo)
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
