@@ -38,7 +38,7 @@
           >
             <option >選擇排序</option>
             {{#each sortList}}
-              <option value='{{this.value}}' {{#if (isEqual this.value ../sortOption)}} selected{{/if}}>{{this.selectName}}</option>
+              <option value='{{this.value}}' {{#isEqual this.value ../sortOption}} selected{{/isEqual}}>{{this.selectName}}</option>
             {{/each}}
           </select>
         </div>
