@@ -1,18 +1,26 @@
 {
   "nameAsc": {
     "selectName": "A -> Z",
+    "name": "name",
+    "order": "asc",
     "value": "nameAsc"
   },
   "nameDesc": {
     "selectName": "Z -> A",
+    "name": "name",
+    "order": "desc",
     "value": "nameDesc"
   },
   "category": {
     "selectName": "類別",
+    "name": "category",
+    "order": "asc",
     "value": "category"
   },
   "location": {
     "selectName": "地區",
+    "name": "location",
+    "order": "asc",
     "value": "location"
   }
 }
