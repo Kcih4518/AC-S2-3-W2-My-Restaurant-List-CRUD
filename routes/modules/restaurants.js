@@ -35,15 +35,14 @@ router.post('/', (req, res) => {
 // Read: Sort by selection
 router.get('/sort', (req, res) => {
   const sortOption = req.query.sortOption
-  const mongooseSortData = {
-    nameAsc: { name: 'asc' },
-    nameDesc: { name: 'desc' },
-    category: { category: 'asc' },
-    location: { location: 'asc' }
-  }
+  const sortName = sortList[sortOption].name
+  const sortOrder = String(sortList[sortOption].order)
+  const mongooseSortData = new Object()
+  mongooseSortData[sortName] = sortOrder
+
   Restaurant.find()
     .lean()
-    .sort(mongooseSortData[sortOption])
+    .sort(mongooseSortData)
     .then((restaurants) =>
       res.render('index', { restaurants, sortList, sortOption })
     )
