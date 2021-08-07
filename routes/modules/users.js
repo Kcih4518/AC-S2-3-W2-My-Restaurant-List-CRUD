@@ -1,12 +1,22 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../../models/User')
+const User = require('../../models/user')
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
 
 // READ : Display login page
 router.get('/login', (req, res) => {
   res.render('login')
 })
+
+// CREATE : Verify request login status
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+  })
+)
 
 // READ : Display register page
 router.get('/register', (req, res) => {
