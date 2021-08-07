@@ -13,7 +13,7 @@ const port = 3000
 
 // Setting express
 const app = express()
-console.log(handlebarsHelpers.value)
+
 // Setting express-handlebars
 app.engine(
   'hbs',
