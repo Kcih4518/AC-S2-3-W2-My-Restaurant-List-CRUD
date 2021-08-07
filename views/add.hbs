@@ -1,6 +1,6 @@
-{{! TODO: 1. 分割為必需與非必需兩個表單，並且使用單一submit button.  keyword: Submit Two Forms at same time with one button only  }}
-{{! TODO: 2. 增加bootstrap表單驗證   }}
-{{! TODO: 3. 增加Preview功能，讓使用者未submit前可以預覽card   }}
+{{! TODO: 1. 分割為必需與非必需兩個表單，並且使用單一submit button. keyword: Submit Two Forms at same time with one button only }}
+{{! TODO: 2. 增加bootstrap表單驗證 }}
+{{! TODO: 3. 增加Preview功能，讓使用者未submit前可以預覽card }}
 <div class='container py-5'>
 
   <div class='row'>
@@ -9,7 +9,8 @@
       <div class='card'>
         <div class='card-body'>
           <h5 class='card-title'>新增餐廳資訊
-            <i class='fas fa-utensils'></i></h5>
+            <i class='fas fa-utensils'></i>
+          </h5>
           <hr />
           <form method='POST' action='/restaurants'>
             <div class='form-group form-row'>
@@ -17,13 +18,7 @@
                 餐廳名稱 (必填)
               </label>
               <div class='col-md-8'>
-                <input
-                  type='text'
-                  name='name'
-                  class='form-control'
-                  id='name'
-                  required
-                />
+                <input type='text' name='name' class='form-control' id='name' required />
                 <small class='text-muted form-text'>艾朋牛排餐酒館</small>
               </div>
             </div>
@@ -33,12 +28,7 @@
                 英文名稱
               </label>
               <div class='col-md-8'>
-                <input
-                  type='text'
-                  name='name_en'
-                  class='form-control'
-                  id='name_en'
-                />
+                <input type='text' name='name_en' class='form-control' id='name_en' />
                 <small class='text-muted form-text'>À POINT STEAK & BAR</small>
               </div>
             </div>
@@ -47,17 +37,11 @@
               <label for='category' class='col-md-4 col-form-label'>餐廳種類
                 (必填)</label>
               <div class='col-md-8'>
-                <input
-                  list='categories'
-                  class='form-control'
-                  id='category'
-                  name='category'
-                  required
-                />
+                <input list='categories' class='form-control' id='category' name='category' required />
                 <small class='text-muted form-text'>美式</small>
                 <datalist id='categories'>
                   {{#each categories}}
-                    <option>{{this}}</option>
+                  <option>{{this}}</option>
                   {{/each}}
                 </datalist>
               </div>
@@ -68,16 +52,8 @@
                 餐廳地址 (必填)
               </label>
               <div class='col-md-8'>
-                <input
-                  type='text'
-                  name='location'
-                  class='form-control'
-                  id='location'
-                  required
-                />
-                <small
-                  class='text-muted form-text'
-                >台北市信義區忠孝東路五段139號2樓</small>
+                <input type='text' name='location' class='form-control' id='location' required />
+                <small class='text-muted form-text'>台北市信義區忠孝東路五段139號2樓</small>
               </div>
             </div>
 
@@ -86,14 +62,8 @@
                 餐廳電話 (必填)
               </label>
               <div class='col-md-8'>
-                <input
-                  type='tel'
-                  pattern='^0[1-9]{1,3} [0-9]{3,4} [0-9]{3,4}'
-                  name='phone'
-                  class='form-control'
-                  id='phone'
-                  required
-                />
+                <input type='tel' pattern='^0[1-9]{1,3} [0-9]{3,4} [0-9]{3,4}' name='phone' class='form-control'
+                  id='phone' required />
                 <small class='text-muted form-text'>02 2570 1255 or 0952 123 125</small>
               </div>
             </div>
@@ -103,15 +73,8 @@
                 餐廳圖片URL
               </label>
               <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='image'
-                  class='form-control'
-                  id='image'
-                />
-                <small
-                  class='text-muted form-text'
-                >https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
+                <input type='url' name='image' class='form-control' id='image' />
+                <small class='text-muted form-text'>https://nicswafford.files.wordpress.com/2020/04/food.jpg</small>
               </div>
             </div>
 
@@ -120,15 +83,8 @@
                 Google Map URL
               </label>
               <div class='col-md-8'>
-                <input
-                  type='url'
-                  name='google_map'
-                  class='form-control'
-                  id='google_map'
-                />
-                <small
-                  class='text-muted form-text'
-                >https://goo.gl/maps/6Lq7U2ahp152</small>
+                <input type='url' name='google_map' class='form-control' id='google_map' />
+                <small class='text-muted form-text'>https://goo.gl/maps/6Lq7U2ahp152</small>
               </div>
             </div>
 
@@ -137,17 +93,8 @@
                 評分
               </label>
               <div class='col-md-7'>
-                <input
-                  type='range'
-                  class='form-control-range'
-                  id='rating'
-                  name='rating'
-                  min='0'
-                  max='5'
-                  step='0.1'
-                  value='2.5'
-                  oninput='ratingOutput.value = rating.value'
-                />
+                <input type='range' class='form-control-range' id='rating' name='rating' min='0' max='5' step='0.1'
+                  value='2.5' oninput='ratingOutput.value = rating.value' />
               </div>
               <div class='col-md-1'>
                 <output name='ratingName' id='ratingOutput'>2.5</output>
@@ -155,37 +102,17 @@
             </div>
 
             <div class='form-group form-row'>
-              <label
-                for='description'
-                rows='3'
-                cols='20'
-                class='col-md-4 col-form-label'
-              >
+              <label for='description' rows='3' cols='20' class='col-md-4 col-form-label'>
                 餐廳描述
               </label>
               <div class='col-md-8'>
-                <textarea
-                  name='description'
-                  class='form-control'
-                  id='description'
-                ></textarea>
-                <small
-                  class='text-muted form-text'
-                >從味蕾開始，重拾美味感動。</small>
+                <textarea name='description' class='form-control' id='description'></textarea>
+                <small class='text-muted form-text'>從味蕾開始，重拾美味感動。</small>
               </div>
             </div>
-            <div
-              class='container d-flex justify-content-center align-items-end'
-            >
-              <button
-                class='btn btn-success mx-3 mt-1'
-                type='submit'
-              >Submit</button>
-              <a
-                class='btn btn-warning mx-3 mt-1'
-                role='button'
-                href='/'
-              >Back</a>
+            <div class='container d-flex justify-content-center align-items-end'>
+              <button class='btn btn-success mx-3 mt-1' type='submit'>Submit</button>
+              <a class='btn btn-warning mx-3 mt-1' role='button' href='/'>Back</a>
             </div>
           </form>
         </div>
