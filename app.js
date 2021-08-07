@@ -48,6 +48,13 @@ app.use(methodOverride('_method'))
 // Setting passport.js
 usePassport(app)
 
+// Setting middleware to store info into res.locals
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
 // Setting Express router and import request into router
 app.use(routes)
 
