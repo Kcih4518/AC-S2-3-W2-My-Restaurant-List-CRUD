@@ -6,6 +6,7 @@ const exphdbs = require('express-handlebars')
 const handlebarsHelpers = require('./helpers/handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes')
+const session = require('express-session')
 require('./config/mongoose')
 
 // Define server info
@@ -24,6 +25,15 @@ app.engine(
   })
 )
 app.set('view engine', 'hbs')
+
+// Setting express-session
+app.use(
+  session({
+    secret: 'ThisIsMySecret',
+    resave: false,
+    saveUninitialized: true
+  })
+)
 
 // setting static files
 app.use(express.static('public'))
