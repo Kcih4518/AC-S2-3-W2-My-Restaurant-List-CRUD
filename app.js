@@ -6,13 +6,18 @@ const exphdbs = require('express-handlebars')
 const handlebarsHelpers = require('./helpers/handlebars')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const routes = require('./routes')
 const session = require('express-session')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 // Define server info
-const port = 3000
+const PORT = process.env.PORT
 
 // Setting express
 const app = express()
@@ -31,7 +36,7 @@ app.set('view engine', 'hbs')
 // Setting express-session
 app.use(
   session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
   })
@@ -65,6 +70,6 @@ app.use((req, res, next) => {
 app.use(routes)
 
 // Start and listen on the express server
-app.listen(port, () => {
-  console.log(`Express is listen on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Express is listen on http://localhost:${PORT}`)
 })

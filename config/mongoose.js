@@ -1,9 +1,7 @@
 const mongoose = require('mongoose')
-
+const MONGODB_URI = process.env.MONGODB_URI
 // Setting mongoose
-// TODO: Do more db error handling (like retry )
-// TODO: Package the mongoose connection into a module
-mongoose.connect('mongodb://localhost/restaurant-list', {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
