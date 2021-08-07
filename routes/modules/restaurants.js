@@ -18,6 +18,8 @@ router.get('/add', (req, res) => {
 // TODO: When non-essential data is empty, fill in the default value.
 router.post('/', (req, res) => {
   const restaurant = req.body
+  restaurant.userId = req.user._id
+
   if (!restaurant.image) {
     restaurant.image =
       'https://nicswafford.files.wordpress.com/2020/04/food.jpg'
@@ -34,13 +36,14 @@ router.post('/', (req, res) => {
 
 // Read: Sort by selection
 router.get('/sort', (req, res) => {
+  const userId = req.user._id
   const sortOption = req.query.sortOption
   const sortName = sortList[sortOption].name
   const sortOrder = String(sortList[sortOption].order)
   const mongooseSortData = new Object()
   mongooseSortData[sortName] = sortOrder
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(mongooseSortData)
     .then((restaurants) =>
@@ -52,6 +55,7 @@ router.get('/sort', (req, res) => {
 // Read: Search restaurant (name 、category)
 // MongoDB $regex ref: https://docs.mongodb.com/manual/reference/operator/query/regex/
 router.get('/search', (req, res) => {
+  const userId = req.user._id
   const keyword = req.query.keyword.trim()
   if (!keyword.length) {
     return res.render('index', { error: 'Please enter keywords !!!' })
@@ -61,7 +65,8 @@ router.get('/search', (req, res) => {
     $or: [
       { category: { $regex: keyword, $options: 'i' } },
       { name: { $regex: keyword, $options: 'i' } }
-    ]
+    ],
+    userId
   })
     .lean()
     .then((restaurants) => {
@@ -81,8 +86,9 @@ router.get('/search', (req, res) => {
 // TODO: Change "show" to "detail"
 // TODO: Show restaurant english name
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch((error) => console.log(error))
@@ -92,8 +98,9 @@ router.get('/:id', (req, res) => {
 // TODO: Can reduce process be queried only once?
 // TODO: Error handle : When cannot get DB data
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurant) => {
       Restaurant.distinct('category')
@@ -109,22 +116,24 @@ router.get('/:id/edit', (req, res) => {
 // Update : Modify restaurant info in DB data
 // TODO: Error handle : When cannot update DB data
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const restaurantUpdateInfo = req.body
-  Restaurant.findById(id)
+  Restaurant.findOne({ _id, userId })
     .then((restaurant) => {
       restaurant = Object.assign(restaurant, restaurantUpdateInfo)
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch((error) => console.log(error))
 })
 
 // Delete : Remove restaurant info card and DB data
 // TODO: Error handle : When cannot delete DB data
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  Restaurant.findOne({ _id, userId })
     .then((restaurant) => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
