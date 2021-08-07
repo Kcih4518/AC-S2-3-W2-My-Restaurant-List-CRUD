@@ -1,6 +1,6 @@
 # Restaurant List
 
-使用 Node.js + Express + express-handlebars + mongoDB 打造的餐廳清單網頁。
+使用 Node.js + Express + express-handlebars + passport.js +mongoDB 打造的餐廳清單網頁。
 
 ## Getting Started
 
@@ -13,15 +13,19 @@
 | mac Big Sur        | 11.4     |
 | VS code            | 1.57.1   |
 | Node.js            | v14.17.1 |
-| Npm                | 7.19.0   |
-| Nvm                | 0.34.0   |
 | Nodemon            | 2.0.7    |
 | Express            | 4.17.1   |
 | Express-handlebars | 5.3.2    |
 | Mongoose           | 5.13.2   |
 | MongoDB            | 4.2.5    |
-| method-override"   | 3.0.0"   |
-| standard"          | 16.0.3"  |
+| method-override    | 3.0.0    |
+| standard           | 16.0.3   |
+| passport           | 0.4.1    |
+| passport-local     | 1.0.0    |
+| passport-facebook  | 3.0.0    |
+| dotenv             | 10.0.0   |
+| bcryptjs           | 2.4.3    |
+| connect-flash      | 0.1.1    |
 
 ### Description
 
@@ -37,6 +41,13 @@
 - 使用者搜尋不到餐廳時會進行提醒
 - 使用者新增餐廳電話需符合提示的格式
 - 使用者可以選擇排序方式: A-Z, Z-A, 類別， 地點
+- 使用者可以註冊帳號，註冊的資料包括：名字、email、密碼、確認密碼。
+- 如果使用者已經註冊過、沒填寫必填欄位、或是密碼輸入錯誤，就註冊失敗，並回應給使用者錯誤訊息。
+- 使用者也可以透過 Facebook Login 直接登入。
+- 使用者必須登入才能使用餐廳清單，如果沒登入，會被導向登入頁面。
+- 使用者登入後，可以建立並管理專屬自己的一個餐廳清單
+- 使用者登出、註冊失敗、或登入失敗時，使用者都會在畫面上看到正確而清楚的系統訊息。
+- 使用者的密碼使用 bcrypt 來處理。
 
 ### Installing
 
