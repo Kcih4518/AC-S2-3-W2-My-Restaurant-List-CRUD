@@ -17,8 +17,8 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: 'All fields are required.' })
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: 'All fields except name are required' })
   }
   if (password !== confirmPassword) {
     errors.push({
@@ -34,19 +34,33 @@ router.post('/register', (req, res) => {
       confirmPassword
     })
   }
-
-  return bcrypt
-    .genSalt(10)
-    .then((salt) => bcrypt.hash(password, salt))
-    .then((hash) =>
-      User.create({
+  User.findOne({ email }).then((user) => {
+    // If already registered: return to the original screen
+    if (user) {
+      errors.push({ message: 'This Email has already been registered.' })
+      return res.render('register', {
+        errors,
         name,
         email,
-        password: hash
+        password,
+        confirmPassword
       })
-    )
-    .then(() => res.redirect('/'))
-    .catch((error) => console.log(error))
+    }
+    // If not yet registered: write to the database
+    // Use bcrypt to hash password with salt
+    return bcrypt
+      .genSalt(10)
+      .then((salt) => bcrypt.hash(password, salt))
+      .then((hash) =>
+        User.create({
+          name,
+          email,
+          password: hash
+        })
+      )
+      .then(() => res.redirect('/'))
+      .catch((error) => console.log(error))
+  })
 })
 
 module.exports = router
