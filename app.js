@@ -49,6 +49,9 @@ app.use(methodOverride('_method'))
 // Setting passport.js
 usePassport(app)
 
+// Setting connect-flash
+app.use(flash())
+
 // Setting middleware to store info into res.locals
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
