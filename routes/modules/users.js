@@ -25,11 +25,13 @@ router.get('/register', (req, res) => {
 
 // CREATE : Register a new user
 router.post('/register', (req, res) => {
+  if (!req.body.name) req.body.name = 'Your'
   const { name, email, password, confirmPassword } = req.body
   const errors = []
   if (!email || !password || !confirmPassword) {
     errors.push({ message: 'All fields except name are required' })
   }
+
   if (password !== confirmPassword) {
     errors.push({
       message: 'The password does not match the confirmed password!'
