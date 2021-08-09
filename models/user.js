@@ -1,7 +1,7 @@
 // Require node_modules
 const mongoose = require('mongoose')
 
-// Define restaurant-list schema
+// Define restaurant schema
 const Schema = mongoose.Schema
 const userSchema = new Schema({
   name: {

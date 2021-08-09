@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 const restaurantListJson = require('./restaurant.json').results
-const Restaurant = require('../restaurant-list')
+const Restaurant = require('../restaurant')
 const User = require('../user')
 const db = require('../../config/mongoose')
 
