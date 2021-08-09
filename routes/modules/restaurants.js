@@ -118,6 +118,12 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
+
+  if (!req.body.image)
+    req.body.image = 'https://nicswafford.files.wordpress.com/2020/04/food.jpg'
+  if (!req.body.google_map)
+    req.body.google_map = 'https://www.google.com.tw/maps/'
+
   const restaurantUpdateInfo = req.body
   Restaurant.findOne({ _id, userId })
     .then((restaurant) => {
